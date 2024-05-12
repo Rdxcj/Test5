@@ -35,7 +35,7 @@ json_data = {
             'utcOffsetMinutes': 0,
         },
     },
-    'videoId': 'rGlJhoE2vME',
+    'videoId': 'WST_o-9Z49A',
     'playbackContext': {
         'contentPlaybackContext': {
             'html5Preference': 'HTML5_PREF_WANTS',
@@ -52,4 +52,4 @@ response = requests.post(
     json=json_data,
 )
 pr = json.loads(response.text)["streamingData"]["hlsManifestUrl"]
-os.system(f"ffmpeg -re -ss 10:58:36 -i '{pr}' -map 0:p:2 -c:v libx264 -c:a aac -g 30 -b:a 384k -f flv rtmp://a.rtmp.youtube.com/live2/zvmf-1yjp-jzek-01pw-b4js")
+os.system(f"ffmpeg -re -ss 05:58:36 -i '{pr}' -map 0:p:5 -c:v libx264 -b:v 9000k -c:a aac -g 30 -b:a 384k -f flv rtmp://a.rtmp.youtube.com/live2/zvmf-1yjp-jzek-01pw-b4js")
