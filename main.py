@@ -79,7 +79,7 @@ pr = json.loads(response.text)["streamingData"]["hlsManifestUrl"]
 
 #os.system(f"ffmpeg -re -i '{pr}' -vf transpose=1 -map 0:p:5 -pix_fmt yuv420p -threads 4 -vb 400k -deinterlace -c:v libx264 -c:a aac -g 30 -b:a 384k -f flv \"rtmp://edgetee-upload-maa2-1.xx.fbcdn.net:443/rtmp/17936757614744903?s_bl=1&s_fbp=tir3-1&s_prp=maa2-1&s_spl=1&s_sw=0&s_tids=1&s_vt=ig&a=AbyZGAvU6xCVbZ-U\"")
 
-os.system(f"ffmpeg -re -i '{pr}' -vf transpose=1 -map 0:p:5 -c:v libx264 -c:a aac -g 30 -b:a 384k -f flv \"rtmps://edgetee-upload-tir3-1.xx.fbcdn.net:443/rtmp/17996804441410781?s_bl=1&s_fbp=maa2-1&s_prp=tir3-1&s_spl=1&s_sw=0&s_tids=1&s_vt=ig&a=AbytKqiZVaEk7vKK\"")
+os.system(f"ffmpeg -re -i '{pr}' -c copy -metadata:s:v:0 rotate=90 -map 0:p:5 -f flv \"rtmps://edgetee-upload-tir3-1.xx.fbcdn.net:443/rtmp/18104267851393588?s_bl=1&s_fbp=maa2-1&s_prp=tir3-1&s_spl=1&s_sw=0&s_tids=1&s_vt=ig&a=AbzVtl7XUc5nU2Sc\"")
 
 
 #\"[f=flv:onfail=ignore]rtmp://a.rtmp.youtube.com/live2/j32f-zj48-1axx-m9g1-1zms|[f=flv:onfail=ignore]rtmp://a.rtmp.youtube.com/live2/zvmf-1yjp-jzek-01pw-b4js\"")
