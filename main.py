@@ -69,7 +69,7 @@ audio = l[-1]['url']
 #os.system(f"ffmpeg -re -i '{video}' -i '{audio}' -vf \"transpose=1,transpose=1,transpose=1,transpose=1,drawtext=fontfile=_.ttf:text='FunnyBunny - YT':fontcolor=white:fontsize=68:box=1:boxcolor=black@0.5:boxborderw=5:x=w-tw:y=h-th\" -threads 4 -crf 0 -b:v 10000k -c:a aac -g 30 -b:a 384k -f flv rtmp://a.rtmp.youtube.com/live2/j32f-zj48-1axx-m9g1-1zms -vcodec copy -acodec copy -f flv rtmp://a.rtmp.youtube.com/live2/zvmf-1yjp-jzek-01pw-b4js")
 
 
-os.system(f"ffmpeg -re -i '{video}' -i '{audio}' -vf \"transpose=1,drawtext=fontfile=_.ttf:text='FunnyBunny - YT':fontcolor=white:fontsize=68:box=1:boxcolor=black@0.5:boxborderw=5:x=w-tw:y=h-th\" -threads 4 -crf 0 -b:v 10000k -c:a aac -g 30 -b:a 384k -f flv rtmps://edgetee-upload-maa2-1.xx.fbcdn.net:443/rtmp/17858955786159906?s_bl=1&s_fbp=tir3-1&s_prp=maa2-1&s_spl=1&s_sw=0&s_tids=1&s_vt=ig&a=AbwpnI3c31kiAZoN")
+os.system(f"ffmpeg -re -i '{video}' -i '{audio}' -vf \"transpose=1,drawtext=fontfile=_.ttf:text='FunnyBunny - YT':fontcolor=white:fontsize=68:box=1:boxcolor=black@0.5:boxborderw=5:x=w-tw:y=h-th\" -threads 4 -crf 0 -b:v 10000k -c:a aac -g 30 -b:a 384k -f flv rtmp://edgetee-upload-maa2-1.xx.fbcdn.net:443/rtmp/17858955786159906?s_bl=1&s_fbp=tir3-1&s_prp=maa2-1&s_spl=1&s_sw=0&s_tids=1&s_vt=ig&a=AbwpnI3c31kiAZoN")
 
 
 #\"[f=flv:onfail=ignore]rtmp://a.rtmp.youtube.com/live2/j32f-zj48-1axx-m9g1-1zms|[f=flv:onfail=ignore]rtmp://a.rtmp.youtube.com/live2/zvmf-1yjp-jzek-01pw-b4js\"")
