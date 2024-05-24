@@ -11,7 +11,7 @@ jobs:
            uname -m
            sudo add-apt-repository ppa:savoury1/ffmpeg4
            sudo apt-get update -y
-           DEBIAN_FRONTEND=noninteractive apt-get -y install tzdata apt-utils
+           DEBIAN_FRONTEND=noninteractive sudo apt-get -y install tzdata apt-utils
            DEBIAN_FRONTEND=noninteractive sudo apt-get upgrade -y
            sudo apt-get install -y ffmpeg python3 python3-pip wget
            sudo pip3 install requests
