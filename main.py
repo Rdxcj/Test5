@@ -79,7 +79,113 @@ pr = json.loads(response.text)["streamingData"]["hlsManifestUrl"]
 
 #os.system(f"ffmpeg -re -i '{pr}' -vf transpose=1 -map 0:p:5 -pix_fmt yuv420p -threads 4 -vb 400k -deinterlace -c:v libx264 -c:a aac -g 30 -b:a 384k -f flv \"rtmp://edgetee-upload-maa2-1.xx.fbcdn.net:443/rtmp/17936757614744903?s_bl=1&s_fbp=tir3-1&s_prp=maa2-1&s_spl=1&s_sw=0&s_tids=1&s_vt=ig&a=AbyZGAvU6xCVbZ-U\"")
 
-os.system(f"ffmpeg -re -i '{pr}' -c copy -metadata:s:v:0 rotate=90 -map 0:p:5 -f flv \"rtmps://edgetee-upload-tir3-1.xx.fbcdn.net:443/rtmp/18104267851393588?s_bl=1&s_fbp=maa2-1&s_prp=tir3-1&s_spl=1&s_sw=0&s_tids=1&s_vt=ig&a=AbzVtl7XUc5nU2Sc\"")
+
+
+
+
+
+
+from pathlib import Path
+import json
+import requests
+session = requests.session()
+
+path = Path("cookies.json")
+Cookies = json.loads(path.read_bytes())
+csrf = Cookies["csrftoken"]
+id = Cookies["ds_user_id"]
+
+#print(cookies)  # save them to file as JSON
+cookies = requests.utils.cookiejar_from_dict(Cookies)
+#print(cookies)
+session.cookies.update(cookies)
+#print(session.headers) # load cookiejar to current session
+#print(session.get("https://www.instagram.com/settings/help/account_status/?hl=en").text)  # te
+#import requests
+
+cookies = {
+    'mid': 'ZlFKcQAEAAFIBArvKFNue9P5_Lea',
+    'ig_did': '1285C8E0-089C-4EB7-AD4C-8E7B095833CA',
+    'ig_nrcb': '1',
+    'datr': 'bUpRZrgmCPkIjhvVMLltrEgn',
+    'csrftoken': 'dVVb2H3QHQkTC5tOg8lVO32lzxeJ2Rum',
+    'ds_user_id': '51941737982',
+    'ps_n': '1',
+    'ps_l': '1',
+    'locale': 'en_US',
+    'wd': '1280x601',
+    'sessionid': '51941737982%3AV7VgGDSyl2sc2O%3A2%3AAYceYMSYpkTnhBLn6wk6CY3wa_Usy7eoSpUWQoWQeg',
+    'rur': '"EAG\\05451941737982\\0541748172635:01f7cc28f5c36ce0e40b7bddd40fa79013fb417ddbb88e8352635ce51c2860b95e7eb72f"',
+}
+
+headers = {
+    'Accept': '*/*',
+    'Accept-Language': 'en-US,en;q=0.9',
+    'Cache-Control': 'no-cache',
+    'Pragma': 'no-cache',
+    'Priority': 'u=1, i',
+    'Referer': 'https://www.instagram.com/settings/help/account_status/?hl=en',
+    'sec-ch-prefers-color-scheme': 'light',
+#    'sec-ch-ua': '"Chromium";v="125", "Not.A/Brand";v="24"',
+#    'sec-ch-ua-full-version-list': '"Chromium";v="125.0.6422.60", "Not.A/Brand";v="24.0.0.0"',
+#    'sec-ch-ua-mobile': '?0',
+#    'sec-ch-ua-model': '""',
+#    'sec-ch-ua-platform': '"Linux"',
+#    'sec-ch-ua-platform-version': '"4.19.191"',
+#    'sec-fetch-dest': 'empty',
+#    'sec-fetch-mode': 'cors',
+#    'sec-fetch-site': 'same-origin',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36',
+#    'x-asbd-id': '129477',
+    'x-csrftoken': f'{csrf}',
+    'x-ig-app-id': '936619743392459',
+#    'x-ig-app-id': '743845927482847',
+ #   'x-ig-www-claim': 'hmac.AR1_ueWdmxzSLaL-obCxlwYWH_OHumpsDQC2featPzTqv7Ay',
+    'X-Requested-With': 'XMLHttpRequest',
+}
+
+session.headers = headers
+#print(session.headers)
+#session.headers.update({"x-csrftoken": f"{csrf}"})
+
+params = {
+    'target_user_id': f'{id}',
+    'hl': 'en',
+}
+#print(session.headers)
+session.cookies.update({"wd": "1280x720", "locale": "en_US", })
+#print(session.cookies)
+#response = session.get('https://www.instagram.com/api/v1/live/web_info/', params=params)
+#print(response.text)
+data = {
+    'broadcast_message': 'Checking',
+    'internal_only': 'false',
+    'source_type': '200',
+    'visibility': '10',
+    'disable_speed_test': '1',
+    'is_premium': '1'
+}
+res = session.post("https://www.instagram.com/api/v1/live/create/", params={'hl': 'en'}, data=data)
+p6 = res.json()
+upload_url = p6['upload_url']
+print(upload_url)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+os.system(f"ffmpeg -re -i '{pr}' -vf transpose=1 -map 0:p:5 -acodec copy -f flv '{upload_url}'")
 
 
 #\"[f=flv:onfail=ignore]rtmp://a.rtmp.youtube.com/live2/j32f-zj48-1axx-m9g1-1zms|[f=flv:onfail=ignore]rtmp://a.rtmp.youtube.com/live2/zvmf-1yjp-jzek-01pw-b4js\"")
