@@ -166,14 +166,14 @@ print(broadcastid)
 #dat ={'should_send_notifications': 1}
 
 rr = session.post(f"https://www.instagram.com/api/v1/live/{broadcastid}/start/", data={'should_send_notifications': 1})
-#print(rr.text)
+print(rr.text)
 
 
 
-#t5 = session.post("https://www.instagram.com/api/v1/live/18047709718670705/end_broadcast/")
+#t5 = session.post("https://www.instagram.com/api/v1/live/18012446552162907/end_broadcast/")
 #print(t5.text)
 
 
 
 
-os.system(f"ffmpeg -re -i '{video}' -i '{audio}' -vf transpose=1 -g 30 -c:a aac -f flv '{upload_url}'")
+os.system(f"ffmpeg -re -i '{video}' -i '{audio}' -vf transpose=1 -c:v libx264 -g 30 -c:a aac -f flv '{upload_url}'")
