@@ -35,7 +35,7 @@ json_data = {
             'utcOffsetMinutes': 0,
         },
     },
-    'videoId': '5clR_JZdZ-k',
+    'videoId': '3jc1Q_RRxgI',
     'playbackContext': {
         'contentPlaybackContext': {
             'html5Preference': 'HTML5_PREF_WANTS',
@@ -57,7 +57,7 @@ response = requests.post(
 pr = response.json()['streamingData']["adaptiveFormats"]
 l = []
 for __ in pr:
-    if "720p" in str(__) and "mp4" in str(__):
+    if "1080p" in str(__) and "mp4" in str(__):
         l.append(__)
     if "AUDIO_QUALITY_MEDIUM" in str(__) and not 'isDrc' in str(__):
         l.append(__)
@@ -166,21 +166,14 @@ print(broadcastid)
 #dat ={'should_send_notifications': 1}
 
 rr = session.post(f"https://www.instagram.com/api/v1/live/{broadcastid}/start/", data={'should_send_notifications': 1})
-print(rr.text)
+#print(rr.text)
 
 
 
-#t5 = session.post("https://www.instagram.com/api/v1/live/17996862980419075/end_broadcast/")
+#t5 = session.post("https://www.instagram.com/api/v1/live/18047709718670705/end_broadcast/")
 #print(t5.text)
 
 
 
 
-os.system(f"ffmpeg -re -i '{video}' -i '{audio}' -vf transpose=1 -c:v libx264 -c:a aac -f flv '{upload_url}'")
-
-
-
-#\"[f=flv:onfail=ignore]rtmp://a.rtmp.youtube.com/live2/j32f-zj48-1axx-m9g1-1zms|[f=flv:onfail=ignore]rtmp://a.rtmp.youtube.com/live2/zvmf-1yjp-jzek-01pw-b4js\"")
-
-#-f flv rtmp://a.rtmp.youtube.com/live2/j32f-zj48-1axx-m9g1-1zms")
-
+os.system(f"ffmpeg -re -i '{video}' -i '{audio}' -vf transpose=1 -g 30 -c:a aac -f flv '{upload_url}'")
