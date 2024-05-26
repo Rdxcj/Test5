@@ -170,7 +170,7 @@ print(rr.text)
 
 
 
-#t5 = session.post("https://www.instagram.com/api/v1/live/18012446552162907/end_broadcast/")
+#t5 = session.post("https://www.instagram.com/api/v1/live/18009182912403811/end_broadcast/")
 #print(t5.text)
 
 
@@ -179,4 +179,4 @@ print(rr.text)
 #os.system(f"ffmpeg -re -i '{video}' -i '{audio}' -vf transpose=1 -c:v libx264 -g 30 -c:a aac -f flv '{upload_url}'")
 
 
-#os.system(f"ffmpeg -re -i '{video}' -i '{audio}' -vcodec copy -acodec copy -f flv '{upload_url}'")
+os.system(f"ffmpeg -re -i '{video}' -i '{audio}' -vcodec copy -acodec copy -f flv '{upload_url}'")
