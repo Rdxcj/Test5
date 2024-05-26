@@ -1,6 +1,3 @@
-# Updating file to test image build
-# basic nginx dockerfile starting with Ubuntu 20.04
-#
 FROM ubuntu:22.04
 RUN \
     --mount=type=cache,target=/var/cache/apt \
