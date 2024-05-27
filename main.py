@@ -35,7 +35,7 @@ json_data = {
             'utcOffsetMinutes': 0,
         },
     },
-    'videoId': '3jc1Q_RRxgI',
+    'videoId': '8cByatjREss',
     'playbackContext': {
         'contentPlaybackContext': {
             'html5Preference': 'HTML5_PREF_WANTS',
@@ -52,19 +52,19 @@ response = requests.post(
     json=json_data,
 )
 
-#pr = json.loads(response.text)["streamingData"]["hlsManifestUrl"]
+pr = json.loads(response.text)["streamingData"]["hlsManifestUrl"]
 
-pr = response.json()['streamingData']["adaptiveFormats"]
-l = []
-for __ in pr:
-    if "1080p" in str(__) and "mp4" in str(__):
-        l.append(__)
-    if "AUDIO_QUALITY_MEDIUM" in str(__) and not 'isDrc' in str(__):
-        l.append(__)
-video = l[0]['url']
-audio = l[-1]['url']
-print(video)
-print(audio)
+#pr = response.json()['streamingData']["adaptiveFormats"]
+#l = []
+#for __ in pr:
+#    if "1080p" in str(__) and "mp4" in str(__):
+#        l.append(__)
+#    if "AUDIO_QUALITY_MEDIUM" in str(__) and not 'isDrc' in str(__):
+#        l.append(__)
+#video = l[0]['url']
+#audio = l[-1]['url']
+#print(video)
+#print(audio)
 
 
 
@@ -179,4 +179,4 @@ print(rr.text)
 #os.system(f"ffmpeg -re -i '{video}' -i '{audio}' -vf transpose=1 -c:v libx264 -g 30 -c:a aac -f flv '{upload_url}'")
 
 
-os.system(f"ffmpeg -re -i '{video}' -i '{audio}' -vcodec copy -acodec copy -f flv '{upload_url}'")
+os.system(f"ffmpeg -rtbufsize 1G -re -i '{pr}' -map 0:p:6 -vcodec copy -acodec copy -f flv '{upload_url}'")
