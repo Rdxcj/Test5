@@ -36,7 +36,7 @@ json_data = {
             'utcOffsetMinutes': 0,
         },
     },
-    'videoId': '8cByatjREss',
+    'videoId': 'zD15w2465p4',
     'playbackContext': {
         'contentPlaybackContext': {
             'html5Preference': 'HTML5_PREF_WANTS',
@@ -183,4 +183,4 @@ print(rr.text)
 #rt = requests.get(pr)
 
 RES = re.findall("\d{2,}x([0-9]+)", requests.get(pr).text).index('1080')
-os.system(f"ffmpeg -rtbufsize 1G -re -i '{pr}' -map 0:p:{int(RES)} -c copy -metadata:s:v:0 rotate=90 -f flv '{upload_url}'")
+os.system(f"ffmpeg -rtbufsize 1G -re -i '{pr}' -map 0:p:{int(RES)} -vf vflip -c:a copy -f flv '{upload_url}'")
