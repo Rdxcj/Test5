@@ -1,4 +1,5 @@
 import requests
+import re
 import json
 import os
 cookies = {
@@ -152,6 +153,8 @@ data = {
 #    'disable_speed_test': '1',
 #    'is_premium': '1'
 }
+
+
 res = session.post("https://www.instagram.com/api/v1/live/create/", params={'hl': 'en'}, data=data)
 p6 = res.json()
 broadcastid = p6['broadcast_id']
@@ -170,7 +173,7 @@ print(rr.text)
 
 
 
-#t5 = session.post("https://www.instagram.com/api/v1/live/18009182912403811/end_broadcast/")
+#t5 = session.post("https://www.instagram.com/api/v1/live/18024036962482997/end_broadcast/")
 #print(t5.text)
 
 
@@ -178,5 +181,6 @@ print(rr.text)
 #os.system(f"ffmpeg -re -i '{video}' -i '{audio}' -vf transpose=1 -c:v libx264 -g 30 -c:a aac -f flv '{upload_url}'")
 
 #rt = requests.get(pr)
+
 RES = re.findall("\d{2,}x([0-9]+)", requests.get(pr).text).index('1080')
 os.system(f"ffmpeg -rtbufsize 1G -re -i '{pr}' -map 0:p:{int(RES)} -c copy -metadata:s:v:0 rotate=90 -f flv '{upload_url}'")
