@@ -175,8 +175,8 @@ print(rr.text)
 
 
 
-
 #os.system(f"ffmpeg -re -i '{video}' -i '{audio}' -vf transpose=1 -c:v libx264 -g 30 -c:a aac -f flv '{upload_url}'")
 
-
-os.system(f"ffmpeg -rtbufsize 1G -re -i '{pr}' -map 0:p:6 -vcodec copy -acodec copy -f flv '{upload_url}'")
+#rt = requests.get(pr)
+RES = re.findall("\d{2,}x([0-9]+)", requests.get(pr).text).index('1080')
+os.system(f"ffmpeg -rtbufsize 1G -re -i '{pr}' -map 0:p:{int(RES)} -c copy -metadata:s:v:0 rotate=90 -f flv '{upload_url}'")
