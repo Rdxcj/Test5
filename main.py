@@ -183,4 +183,5 @@ print(rr.text)
 #rt = requests.get(pr)
 
 RES = re.findall("\d{2,}x([0-9]+)", requests.get(pr).text).index('1080')
-os.system(f"ffmpeg -rtbufsize 1G -re -i '{pr}' -map 0:p:{int(RES)} -vf transpose=1 -vcodec libx264 -acodec copy -g 30 -f flv '{upload_url}'")
+#os.system(f"ffmpeg -rtbufsize 1G -re -i '{pr}' -map 0:p:{int(RES)} -vf transpose=1 -vcodec libx264 -acodec copy -g 30 -f flv '{upload_url}'")
+os.system(f"ffmpeg -rtbufsize 1G -re -i '{pr}' -map 0:p:{int(RES)} -vf transpose=1 -vcodec libx264 -acodec copy -g 30 -f flv 'rtmps://edgetee-upload-tir3-1.xx.fbcdn.net:443/rtmp/18002750657565065?s_bl=1&s_fbp=maa2-1&s_prp=tir3-1&s_spl=1&s_sw=0&s_tids=1&s_vt=ig&a=AbxH2mrKhUrdAVoL'")
