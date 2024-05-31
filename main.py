@@ -182,6 +182,76 @@ data = {
 
 #rt = requests.get(pr)
 
+
+#import requests
+
+headerszzz = {
+    'User-Agent': 'Instagram 332.0.0.38.90 Android (34/14; 396dpi; 1080x2238; vivo; V2311; V2225; mt6833; en_IN; 601420827)',
+    'X-IG-App-Locale': 'en_IN',
+    'X-IG-Device-Locale': 'en_IN',
+    'X-IG-Mapped-Locale': 'en_US',
+#    'X-Pigeon-Session-Id': 'UFS-02903322-bed8-4b37-8d5c-f96479db3fa1-3',
+    'X-Pigeon-Rawclienttime': '1717007056.986',
+    'X-IG-Bandwidth-Speed-KBPS': '1536.000',
+    'X-IG-Bandwidth-TotalBytes-B': '0',
+    'X-IG-Bandwidth-TotalTime-MS': '0',
+    'X-Bloks-Version-Id': '1d85eb04419079358b68b92be6f523d99f895154273fd6dd5eb7d3df20e4453c',
+#    'X-IG-WWW-Claim': 'hmac.AR2j_aJEeP4IOD_V9ZkjM_PDbpowSWqTx36KewZPXCJoUEwO',
+    'X-Bloks-Is-Prism-Enabled': 'true',
+    'X-Bloks-Prism-Button-Version': 'CONTROL',
+    'X-Bloks-Prism-Colors-Enabled': 'false',
+    'X-Bloks-Prism-Font-Enabled': 'false',
+    'X-Bloks-Is-Layout-RTL': 'false',
+    'X-IG-Device-ID': 'b210e33c-e663-413f-8f7e-4dad05d5e905',
+    'X-IG-Family-Device-ID': '9737c626-f220-4885-a90e-64f87ab67dcc',
+    'X-IG-Android-ID': 'android-1909c08fe2b2aea3',
+    'X-IG-Timezone-Offset': '19800',
+#    'X-IG-Nav-Chain': 'MainFeedFragment:feed_timeline:1:cold_start:1717006919.1:::1717006919.1,GalleryPickerFragment:gallery_picker:2:camera_tab_bar:1717006963.978:::1717006963.978,GalleryPickerFragment:gallery_picker:3:button:1717006965.962:::1717006965.962,QuickCaptureFragment:live_precapture_camera:4:button:1717006985.125:::1717007050.924,IgLiveCaptureFragment:live_broadcast:8:button:1717007056.699:::1717007056.699',
+    'X-IG-CLIENT-ENDPOINT': 'IgLiveCaptureFragment:live_broadcast',
+#    'X-IG-SALT-IDS': '332021232,974466465,332016876,332012435',
+#    'X-IG-SALT-LOGGER-IDS': '926483817,20119555,17631244,20133815,321323009,3213622,883764695,25625981,915222759,76221888,25952257,42991646',
+    'X-FB-Connection-Type': 'MOBILE.LTE',
+    'X-IG-Connection-Type': 'MOBILE(LTE)',
+    'X-IG-Capabilities': '3brTv10=',
+    'X-IG-App-ID': '567067343352427',
+    'Priority': 'u=3',
+    'X-FB-HTTP-Engine': 'Liger',
+    'Accept-Language': 'en-IN, en-US',
+    'Authorization': 'Bearer IGT:2:eyJkc191c2VyX2lkIjoiNjA0OTAyODkwNCIsInNlc3Npb25pZCI6IjYwNDkwMjg5MDQlM0FvOXVlTzNzSHRrOVc4eiUzQTYlM0FBWWZlb2Z1TUpUN0pjNTdDbXpLdHM3cFNqcnhqc0F5WGRiX2lidlV3VncifQ==',
+    'X-MID': 'ZlnQKgABAAEhSwL9ZL9G2FUg_73h',
+#    'IG-U-IG-DIRECT-REGION-HINT': 'ASH,51941737982,1748541502:01f7fc4095173790b593d391c7102f67582d335bd4d9d67643cfa67fe84f563c6805014d',
+    'IG-U-DS-USER-ID': '6049028904',
+    'IG-INTENDED-USER-ID': '6049028904',
+    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+    'Connection': 'Keep-Alive',
+}
+
+datasss = {
+    'user_pay_enabled': 'false',
+#    'camera_session_id': 'b4787b89-0861-49fe-ac6d-dd9786cbb35b',
+    'source_type': '5',
+    'preview_height': '1920',
+    '_uuid': 'b210e33c-e663-413f-8f7e-4dad05d5e905',
+#    'should_use_rsys_rtc_infra': 'false',
+    'broadcast_type': 'RTMP',
+    'broadcast_message': 'Pubg Live',
+    'preview_width': '1080',
+    'sup_active': 'false',
+    'internal_only': '0',
+    'visibility': '0',
+}
+
+sponse = requests.post('https://i.instagram.com/api/v1/live/create/', headers=headerszzz, data=datasss).json()
+
+broacast = sponse["broadcast_id"]
+rtmp = sponse["upload_url"]
+resd = requests.post(f'https://i.instagram.com/api/v1/live/{broacast}/start/', headers=headerszzz)
+print(resd.text)
+
+
+
+
+
 RES = re.findall("\d{2,}x([0-9]+)", requests.get(pr).text).index('1080')
 #os.system(f"ffmpeg -rtbufsize 1G -re -i '{pr}' -map 0:p:{int(RES)} -vf transpose=1 -vcodec libx264 -acodec copy -g 30 -f flv '{upload_url}'")
-os.system(f"ffmpeg -rtbufsize 1G -re -i '{pr}' -map 0:p:{int(RES)} -vf transpose=1 -acodec aac -g 30 -f flv 'rtmp://a.rtmp.youtube.com/live2/qtaa-xx6x-h99h-hjtp-1wf1' -vcodec copy -acodec copy -f flv 'rtmps://edgetee-upload-sin6-4.xx.fbcdn.net:443/rtmp/18085894294457251?s_bl=1&s_fbp=xsp1-1&s_prp=sin6-4&s_sw=0&s_tids=1&s_vt=ig&a=AbyQb62F0_760j2G'")
+os.system(f"ffmpeg -rtbufsize 1G -re -i '{pr}' -map 0:p:{int(RES)} -vf transpose=1 -acodec aac -g 30 -f flv 'rtmp://a.rtmp.youtube.com/live2/qtaa-xx6x-h99h-hjtp-1wf1' -vcodec copy -acodec copy -f flv '{rtmp}'")
