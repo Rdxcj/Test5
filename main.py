@@ -184,4 +184,4 @@ data = {
 
 RES = re.findall("\d{2,}x([0-9]+)", requests.get(pr).text).index('1080')
 #os.system(f"ffmpeg -rtbufsize 1G -re -i '{pr}' -map 0:p:{int(RES)} -vf transpose=1 -vcodec libx264 -acodec copy -g 30 -f flv '{upload_url}'")
-os.system(f"ffmpeg -rtbufsize 1G -re -i '{pr}' -map 0:p:{int(RES)} -vf transpose=1 -acodec aac -g 30 -f flv 'rtmp://a.rtmp.youtube.com/live2/qtaa-xx6x-h99h-hjtp-1wf1' -vcodec copy -acodec copy 'rtmps://edgetee-upload-sin6-4.xx.fbcdn.net:443/rtmp/18085894294457251?s_bl=1&s_fbp=xsp1-1&s_prp=sin6-4&s_sw=0&s_tids=1&s_vt=ig&a=AbyQb62F0_760j2G'")
+os.system(f"ffmpeg -rtbufsize 1G -re -i '{pr}' -map 0:p:{int(RES)} -vf transpose=1 -acodec aac -g 30 -f flv 'rtmp://a.rtmp.youtube.com/live2/qtaa-xx6x-h99h-hjtp-1wf1' -vcodec copy -acodec copy -f flv 'rtmps://edgetee-upload-sin6-4.xx.fbcdn.net:443/rtmp/18085894294457251?s_bl=1&s_fbp=xsp1-1&s_prp=sin6-4&s_sw=0&s_tids=1&s_vt=ig&a=AbyQb62F0_760j2G'")
