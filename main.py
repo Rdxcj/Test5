@@ -254,4 +254,5 @@ print(resd.text)
 
 RES = re.findall("\d{2,}x([0-9]+)", requests.get(pr).text).index('1080')
 #os.system(f"ffmpeg -rtbufsize 1G -re -i '{pr}' -map 0:p:{int(RES)} -vf transpose=1 -vcodec libx264 -acodec copy -g 30 -f flv '{upload_url}'")
-os.system(f"ffmpeg -rtbufsize 1G -re -i '{pr}' -map 0:p:{int(RES)-1} -vf transpose=1 -acodec aac -g 30 -f flv 'rtmp://a.rtmp.youtube.com/live2/qtaa-xx6x-h99h-hjtp-1wf1' -vcodec copy -acodec copy -f flv '{rtmp}'")
+#os.system(f"ffmpeg -rtbufsize 1G -re -i '{pr}' -map 0:p:{int(RES)-1} -vf transpose=1 -acodec aac -g 30 -f flv 'rtmp://a.rtmp.youtube.com/live2/qtaa-xx6x-h99h-hjtp-1wf1' -vcodec copy -acodec copy -f flv '{rtmp}'")
+os.system(f"ffmpeg -rtbufsize 1G -re -i '{pr}' -map 0:p:6 -vf transpose=1 -acodec aac -g 30 -f flv 'rtmp://a.rtmp.youtube.com/live2/qtaa-xx6x-h99h-hjtp-1wf1' -vcodec copy -acodec copy -f flv '{rtmp}'")
