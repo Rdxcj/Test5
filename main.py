@@ -36,7 +36,7 @@ json_data = {
             'utcOffsetMinutes': 0,
         },
     },
-    'videoId': 'dqVcIYpqR94',
+    'videoId': 'jTx5GetgC-M',
     'playbackContext': {
         'contentPlaybackContext': {
             'html5Preference': 'HTML5_PREF_WANTS',
@@ -91,7 +91,7 @@ import json
 import requests
 session = requests.session()
 
-path = Path("C.json")
+#path = Path("C.json")
 Cookies = {'csrftoken': 'p8iGdJiFBzQZ6HjvW0Sn6ksBob9BXWLu', 'rur': '"PRN\\0546049028904\\0541748703571:01f77fd1d76b4bc32fbf3eb54367042b24be2c562d9f74125fdb00e867b7828ab0fa21b2"', 'mid': 'ZkMXSgABAAG79YazZZHgTeF9XTVM', 'ds_user_id': '6049028904', 'ig_did': 'FE5CE32B-19AD-4C1D-A5A7-0558304197FF', 'sessionid': '6049028904%3A5prK54orcy4nAI%3A1%3AAYdboek4ImZ4nzz2bgamWmfRgbIgGBTM2Yla-jnPsw', 'datr': 'SRdDZm6LjndXwTVI4jb_5qaY', 'ig_nrcb': '1', 'ig_lang': 'en', 'no_restriction': '1', 'ps_l': '1', 'ig_direct_region_hint': '"ASH\\05451941737982\\0541748243307:01f77445d6f6ca9c27e5671f5349acaecf644f69edcb09ad4a3884450f4dfd8580c5887e"', 'dpr': '2.3135459423065186', 'wd': '1048x2022', 'shbid': '"12619\\0546049028904\\0541748703511:01f7bb09cd5c9ce999bb1f3c76265bb381780f2b74e414762a67c277e40091574b491e58"', 'shbts': '"1717167511\\0546049028904\\0541748703511:01f7c3659e0d3c5d800e44b4553d00755c3266a674645f172f4053f8a71c294ab760beb4"'}  #json.loads(json.dumps(path.read_bytes()))
 
 
@@ -144,7 +144,7 @@ params = {
     'hl': 'en',
 }
 #print(session.headers)
-session.cookies.update({"wd": "1280x720", "locale": "en_US", })
+#session.cookies.update({"wd": "1280x720", "locale": "en_US", })
 #print(session.cookies)
 #response = session.get('https://www.instagram.com/api/v1/live/web_info/', params=params)
 #print(response.text)
@@ -260,4 +260,4 @@ datasss = {
 #RES = re.findall("\d{2,}x([0-9]+)", requests.get(pr).text).index('1080')
 #os.system(f"ffmpeg -rtbufsize 1G -re -i '{pr}' -map 0:p:{int(RES)} -vf transpose=1 -vcodec libx264 -acodec copy -g 30 -f flv '{upload_url}'")
 #os.system(f"ffmpeg -rtbufsize 1G -re -i '{pr}' -map 0:p:{int(RES)-1} -vf transpose=1 -acodec aac -g 30 -f flv 'rtmp://a.rtmp.youtube.com/live2/qtaa-xx6x-h99h-hjtp-1wf1' -vcodec copy -acodec copy -f flv '{rtmp}'")
-os.system(f"ffmpeg -rtbufsize 1G -re -i '{pr}' -map 0:p:4 -vf transpose=1 -acodec aac -g 30 -f flv 'rtmp://a.rtmp.youtube.com/live2/qtaa-xx6x-h99h-hjtp-1wf1' -vcodec copy -acodec copy -f flv '{upload_url}'")
+os.system(f"ffmpeg -re -i '{pr}' -map 0:p:6 -vf \"transpose=1,transpose=1,transpose=1,transpose=1\" -threads 4 -crf 0 -b:v 10000k -c:a aac -g 30 -b:a 384k -f flv 'rtmp://a.rtmp.youtube.com/live2/qtaa-xx6x-h99h-hjtp-1wf1' -vcodec copy -acodec copy -f flv '{upload_url}'")
