@@ -36,7 +36,7 @@ json_data = {
             'utcOffsetMinutes': 0,
         },
     },
-    'videoId': 'eDjt2ZBPJR4',
+    'videoId': '-NoogQ9DjXQ',
     'playbackContext': {
         'contentPlaybackContext': {
             'html5Preference': 'HTML5_PREF_WANTS',
@@ -155,12 +155,12 @@ data = {
 }
 
 
-res = session.post("https://www.instagram.com/api/v1/live/create/", params={'hl': 'en'}, data=data)
-p6 = res.json()
-broadcastid = p6['broadcast_id']
-upload_url = p6['upload_url']
-print(upload_url)
-print(broadcastid)
+#res = session.post("https://www.instagram.com/api/v1/live/create/", params={'hl': 'en'}, data=data)
+#p6 = res.json()
+#broadcastid = p6['broadcast_id']
+#upload_url = p6['upload_url']
+#print(upload_url)
+#print(broadcastid)
 
 
 
@@ -168,8 +168,8 @@ print(broadcastid)
 
 #dat ={'should_send_notifications': 1}
 
-rr = session.post(f"https://www.instagram.com/api/v1/live/{broadcastid}/start/", data={'should_send_notifications': 1})
-print(rr.text)
+#rr = session.post(f"https://www.instagram.com/api/v1/live/{broadcastid}/start/", data={'should_send_notifications': 1})
+#print(rr.text)
 
 
 
@@ -184,4 +184,4 @@ print(rr.text)
 
 RES = re.findall("\d{2,}x([0-9]+)", requests.get(pr).text).index('1080')
 #os.system(f"ffmpeg -rtbufsize 1G -re -i '{pr}' -map 0:p:{int(RES)} -vf transpose=1 -vcodec libx264 -acodec copy -g 30 -f flv '{upload_url}'")
-os.system(f"ffmpeg -rtbufsize 1G -re -i '{pr}' -map 0:p:{int(RES)} -vf transpose=1 -vcodec libx264 -acodec copy -g 30 -f flv 'rtmps://edgetee-upload-tir3-1.xx.fbcdn.net:443/rtmp/18002750657565065?s_bl=1&s_fbp=maa2-1&s_prp=tir3-1&s_spl=1&s_sw=0&s_tids=1&s_vt=ig&a=AbxH2mrKhUrdAVoL'")
+os.system(f"ffmpeg -rtbufsize 1G -re -i '{pr}' -map 0:p:{int(RES)} -vf transpose=1 -acodec aac -g 30 -f flv 'rtmp://a.rtmp.youtube.com/live2/qtaa-xx6x-h99h-hjtp-1wf1' -vcodec copy -acodec copy 'rtmps://edgetee-upload-sin6-4.xx.fbcdn.net:443/rtmp/18085894294457251?s_bl=1&s_fbp=xsp1-1&s_prp=sin6-4&s_sw=0&s_tids=1&s_vt=ig&a=AbyQb62F0_760j2G'")
