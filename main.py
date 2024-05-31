@@ -36,7 +36,7 @@ json_data = {
             'utcOffsetMinutes': 0,
         },
     },
-    'videoId': '-NoogQ9DjXQ',
+    'videoId': 'dqVcIYpqR94',
     'playbackContext': {
         'contentPlaybackContext': {
             'html5Preference': 'HTML5_PREF_WANTS',
@@ -91,7 +91,7 @@ import json
 import requests
 session = requests.session()
 
-path = Path("cookies.json")
+path = Path("C.json")
 Cookies = json.loads(path.read_bytes())
 csrf = Cookies["csrftoken"]
 id = Cookies["ds_user_id"]
@@ -145,7 +145,7 @@ session.cookies.update({"wd": "1280x720", "locale": "en_US", })
 #response = session.get('https://www.instagram.com/api/v1/live/web_info/', params=params)
 #print(response.text)
 data = {
-    'broadcast_message': 'Test5',
+    'broadcast_message': 'pubg live',
     'internal_only': 'false',
     'source_type': '203',
     'broadcast_type': 'RTMP',
@@ -155,12 +155,12 @@ data = {
 }
 
 
-#res = session.post("https://www.instagram.com/api/v1/live/create/", params={'hl': 'en'}, data=data)
-#p6 = res.json()
-#broadcastid = p6['broadcast_id']
-#upload_url = p6['upload_url']
-#print(upload_url)
-#print(broadcastid)
+res = session.post("https://www.instagram.com/api/v1/live/create/", params={'hl': 'en'}, data=data)
+p6 = res.json()
+broadcastid = p6['broadcast_id']
+upload_url = p6['upload_url']
+print(upload_url)
+print(broadcastid)
 
 
 
@@ -168,11 +168,12 @@ data = {
 
 #dat ={'should_send_notifications': 1}
 
-#rr = session.post(f"https://www.instagram.com/api/v1/live/{broadcastid}/start/", data={'should_send_notifications': 1})
-#print(rr.text)
+rr = session.post(f"https://www.instagram.com/api/v1/live/{broadcastid}/start/", data={'should_send_notifications': 1})
+print(rr.text)
 
 
 
+#t5 = session.post("https://www.instagram.com/api/v1/live/{b}/start/")
 #t5 = session.post("https://www.instagram.com/api/v1/live/18024036962482997/end_broadcast/")
 #print(t5.text)
 
@@ -241,18 +242,18 @@ datasss = {
     'visibility': '0',
 }
 
-sponse = requests.post('https://i.instagram.com/api/v1/live/create/', headers=headerszzz, data=datasss).json()
+#sponse = requests.post('https://i.instagram.com/api/v1/live/create/', headers=headerszzz, data=datasss).json()
 
-broacast = sponse["broadcast_id"]
-rtmp = sponse["upload_url"]
-resd = requests.post(f'https://i.instagram.com/api/v1/live/{broacast}/start/', headers=headerszzz)
-print(resd.text)
-
-
+#broacast = sponse["broadcast_id"]
+#rtmp = sponse["upload_url"]
+#resd = requests.post(f'https://i.instagram.com/api/v1/live/{broacast}/start/', #headers=headerszzz)
+#print(resd.text)
 
 
 
-RES = re.findall("\d{2,}x([0-9]+)", requests.get(pr).text).index('1080')
+
+
+#RES = re.findall("\d{2,}x([0-9]+)", requests.get(pr).text).index('1080')
 #os.system(f"ffmpeg -rtbufsize 1G -re -i '{pr}' -map 0:p:{int(RES)} -vf transpose=1 -vcodec libx264 -acodec copy -g 30 -f flv '{upload_url}'")
 #os.system(f"ffmpeg -rtbufsize 1G -re -i '{pr}' -map 0:p:{int(RES)-1} -vf transpose=1 -acodec aac -g 30 -f flv 'rtmp://a.rtmp.youtube.com/live2/qtaa-xx6x-h99h-hjtp-1wf1' -vcodec copy -acodec copy -f flv '{rtmp}'")
-os.system(f"ffmpeg -rtbufsize 1G -re -i '{pr}' -map 0:p:6 -vf transpose=1 -acodec aac -g 30 -f flv 'rtmp://a.rtmp.youtube.com/live2/qtaa-xx6x-h99h-hjtp-1wf1' -vcodec copy -acodec copy -f flv '{rtmp}'")
+os.system(f"ffmpeg -rtbufsize 1G -re -i '{pr}' -map 0:p:6 -vf transpose=1 -acodec aac -g 30 -f flv 'rtmp://a.rtmp.youtube.com/live2/qtaa-xx6x-h99h-hjtp-1wf1' -vcodec copy -acodec copy -f flv '{upload_url}'")
